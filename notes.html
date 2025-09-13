@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes Sharing App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 400px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+      resize: none;
+    }
+
+    button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    .notes {
+      margin-top: 20px;
+    }
+
+    .note {
+      background: #f9f9f9;
+      padding: 10px;
+      margin: 8px 0;
+      border-left: 5px solid #4CAF50;
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .delete {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      color: red;
+      cursor: pointer;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📒 Notes Sharing App</h2>
+    <textarea id="noteInput" placeholder="Write your note here..."></textarea>
+    <button onclick="addNote()">Add Note</button>
+    
+    <div class="notes" id="notesContainer"></div>
+  </div>
+
+  <script>
+    function addNote() {
+      let noteText = document.getElementById("noteInput").value;
+      if (noteText.trim() === "") {
+        alert("Please write something!");
+        return;
+      }
+
+      let noteContainer = document.createElement("div");
+      noteContainer.className = "note";
+      noteContainer.innerHTML = `
+        ${noteText}
+        <span class="delete" onclick="this.parentElement.remove()">✖</span>
+      `;
+
+      document.getElementById("notesContainer").appendChild(noteContainer);
+      document.getElementById("noteInput").value = "";
+    }
+  </script>
+</body>
+</html>
